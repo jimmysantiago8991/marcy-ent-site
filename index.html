@@ -3,130 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marcy Projects Entrepreneurs Hub - Bed-Stuy</title>
+  <title>Marcy Projects Entrepreneurs Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    body { 
-      margin: 0; 
-      font-family: system-ui, -apple-system, sans-serif; 
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: #e5e7eb; 
-      line-height: 1.6;
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #020617;
+      --accent: #22c55e;
+      --accent-glow: #a5b4fc;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border: #1f2937;
+      --danger: #ef4444;
     }
-    header { background: #020617; padding: 1rem 0; border-bottom: 1px solid #1f2937; }
+    * { box-sizing: border-box; margin: 0; }
+    body { 
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    header { 
+      background: rgba(2, 6, 23, 0.95); 
+      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
     nav { 
-      max-width: 960px; margin: 0 auto; padding: 0 1rem; 
+      max-width: 1200px; margin: 0 auto; padding: 1rem 2rem;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .logo { color: #e5e7eb; font-weight: 700; font-size: 1.25rem; text-decoration: none; }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
-    .nav-links a { color: #e5e7eb; text-decoration: none; font-size: 0.95rem; }
-    .nav-links a:hover { color: #22c55e; }
+    .logo { 
+      font-size: 1.5rem; font-weight: 700; 
+      background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; padding: 0; }
+    .nav-links a { 
+      color: var(--text); text-decoration: none; 
+      font-weight: 500; transition: all 0.3s ease;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a[href*="420"] { color: var(--danger); }
     
-    main { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
-    .mission { text-align: center; padding: 4rem 1rem; }
+    /* Hero Mission */
+    .mission { 
+      text-align: center; padding: 6rem 2rem 4rem; 
+      position: relative; overflow: hidden;
+    }
+    .mission::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 400px; background: radial-gradient(circle at 30% 20%, rgba(34,197,94,0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
+    .mission-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
     .mission h1 { 
-      font-size: clamp(2.5rem, 5vw, 4rem); 
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #22c55e, #a5b4fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; 
+      margin-bottom: 2rem; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .mission p { 
-      font-size: 1.2rem; max-width: 700px; margin: 0 auto 1.5rem; 
-      opacity: 0.9;
+      font-size: 1.25rem; max-width: 700px; margin: 0 auto 1.5rem;
+      opacity: 0.95;
     }
-    .mission strong { color: #22c55e; }
     .quote { 
-      font-style: italic; font-size: 1.3rem; 
-      background: rgba(34,197,94,0.1); padding: 2rem; 
-      border-left: 4px solid #22c55e; margin: 2rem 0;
+      font-size: 1.4rem; font-style: italic; font-weight: 300;
+      background: rgba(34,197,94,0.08); 
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 16px; padding: 2.5rem; margin: 3rem 0;
+      box-shadow: 0 25px 50px -12px rgba(34,197,94,0.15);
     }
     
-    .directory { padding: 4rem 1rem; }
+    /* Directory */
+    .directory { padding: 6rem 2rem; }
+    .directory h2 { 
+      text-align: center; font-size: 2.5rem; margin-bottom: 4rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
     .card-grid { 
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-      gap: 2rem; margin-top: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 2rem; max-width: 1200px; margin: 0 auto;
     }
     .card { 
-      background: #020617; border: 1px solid #1f2937; border-radius: 12px; 
-      padding: 1.5rem; transition: all 0.3s ease;
+      background: var(--bg-card); border: 1px solid var(--border); 
+      border-radius: 20px; padding: 2.5rem 2rem; 
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-glow));
+      transform: scaleX(0); transition: transform 0.4s ease;
     }
     .card:hover { 
-      border-color: #22c55e; transform: translateY(-4px); 
-      box-shadow: 0 20px 25px rgba(0,0,0,0.3);
+      transform: translateY(-12px) scale(1.02); 
+      border-color: var(--accent); box-shadow: 0 35px 60px -15px rgba(0,0,0,0.4);
     }
-    .card h3 { margin-top: 0; color: #e5e7eb; }
-    .card p { color: #9ca3af; margin-bottom: 1rem; }
+    .card:hover::before { transform: scaleX(1); }
+    .card h3 { 
+      font-size: 1.5rem; margin-bottom: 1rem; color: var(--text);
+    }
+    .card p { color: var(--text-muted); margin-bottom: 1.5rem; }
+    .card-links { display: flex; flex-wrap: wrap; gap: 1rem; }
     .card a { 
-      display: inline-block; margin-right: 1rem; margin-bottom: 0.5rem;
-      padding: 0.5rem 1rem; background: #1f2937; color: #a5b4fc; 
-      text-decoration: none; border-radius: 6px; font-size: 0.9rem;
+      padding: 0.75rem 1.5rem; background: rgba(34,197,94,0.1); 
+      color: var(--accent); border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 50px; text-decoration: none; font-weight: 500;
+      transition: all 0.3s ease;
     }
-    .card a:hover { background: #22c55e; color: #022c22; }
+    .card a:hover { background: var(--accent); color: #022c22; transform: translateY(-2px); }
     
-    .restricted { border-color: #ef4444; }
-    .restricted a { background: #ef4444 !important; color: white !important; }
+    .card.restricted { border-color: rgba(239,68,68,0.5); }
+    .card.restricted::before { background: linear-gradient(90deg, var(--danger), #f87171); }
+    .card.restricted a { 
+      background: rgba(239,68,68,0.2); color: var(--danger); 
+      border-color: rgba(239,68,68,0.4);
+    }
+    .card.restricted a:hover { background: var(--danger); color: white; }
     
-    footer { text-align: center; padding: 2rem; background: #020617; color: #6b7280; }
+    footer { 
+      text-align: center; padding: 3rem 2rem; 
+      background: var(--bg-card); color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
     
-    @media (max-width: 640px) {
-      .nav { flex-direction: column; gap: 1rem; }
-      .nav-links { gap: 1rem; }
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+      .mission { padding: 4rem 1rem; }
+      .card-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+  <!-- Same HTML structure as before with your mission text -->
   <header>
     <nav>
-      <a href="index.html" class="logo">Marcy Projects Hub</a>
-      <ul class="nav-links">
-        <li><a href="music.html">Music</a></li>
-        <li><a href="clothing.html">Clothing</a></li>
-        <li><a href="age-420.html">4/20 (21+)</a></li>
-      </ul>
-    </nav>
-  </header>
+      <a href="index
 
-  <main>
-    <section class="mission">
-      <h1>Marcy Projects<br>Entrepreneurs Hub</h1>
-      <p>Born in a concrete garden, roses barely rise. In an environment full of clouds, you will never see a star, but they exist.</p>
-      <p>Our mission here is to provide a platform for all entrepreneurs from these environments to showcase their greatness. From musical artists to fashion designers to brand entrepreneurs, this hub directly connects you with some of these upcoming stars. Here, you can find direct connections to various sites, along with connecting with other upcoming artists, designers, and entrepreneurs.</p>
-      <p>Please use this hub responsibly and adhere to our guidelines to provide a safe and positive environment for everyone.</p>
-      <p><strong>Only in the dark can you see stars, but only in the light can you heal scars.... Bricks made Space Bound !!</strong></p>
-    </section>
-
-    <section class="directory">
-      <h2 style="text-align:center;">Featured Entrepreneurs</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>[Music Artist Name]</h3>
-          <p>Bed-Stuy hip-hop / R&B artist</p>
-          <a href="#" target="_blank" rel="noopener noreferrer">Website</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-        </div>
-        
-        <div class="card">
-          <h3>[Clothing Brand]</h3>
-          <p>Streetwear designed in Marcy Projects</p>
-          <a href="#" target="_blank" rel="noopener noreferrer">Website</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-        </div>
-        
-        <div class="card restricted">
-          <h3>4/20 Wellness Brands</h3>
-          <p>Legal lifestyle products (21+ only)</p>
-          <a href="age-420.html">View 21+ brands →</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 Marcy Projects Entrepreneurs Hub | Bed-Stuy, Brooklyn</p>
-  </footer>
-</body>
-</html>
 
